@@ -1,0 +1,11 @@
+data 
+
+.env
+
+__pycache__/
+
+.vscode 
+
+week2
+
+.DS_Store
