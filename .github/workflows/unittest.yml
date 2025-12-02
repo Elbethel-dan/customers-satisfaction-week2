@@ -11,18 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      # Step 2: Set up Python 3.10
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Install pytest if not in requirements
+          pip install pytest pytest-mock
 
-    - name: Check Python version
-      run: python --version
+      # Step 4: Check Python version
+      - name: Check Python version
+        run: python --version
+
+      # Step 5: Run tests
+      - name: Run unit tests
+        run: |
+          # Optional: Mock external packages for CI
+          python -c "import sys; sys.modules['google_play_scraper'] = __import__('unittest.mock').MagicMock(); sys.modules['dotenv'] = __import__('unittest.mock').MagicMock()"
+          # Run pytest on the tests folder
+          pytest tests/ --maxfail=1 --disable-warnings -q
