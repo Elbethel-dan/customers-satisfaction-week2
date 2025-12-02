@@ -44,6 +44,31 @@ The objective is to **quantify sentiment** and **identify recurring themes** in 
 
 ---
 
+### 3. PostgreSQL Database Setup
+- Loaded cleaned review data into a PostgreSQL database for structured storage.  
+- Designed a simple schema with tables such as:
+  - `reviews` (`review_id`, `review_text`, `rating`, `review_date`, `bank_id`, `sentiment_label`, `sentiment_score`)  
+  - `bank` (`bank_id`, `bank_name`, `app_name`)   
+- Connected Python scripts to PostgreSQL using `psycopg2` for data insertion and queries.  
+- Enabled further analysis directly from the database for reproducibility and scalability.
+
+---
+
+### 4. Insights & Recommendations
+- Derived key drivers (positive aspects) and pain points (negative aspects) per bank from sentiment and thematic analysis.  
+- Visualized results using Matplotlib and Seaborn:
+  - Weekly sentiment trends
+  - Rating distributions
+  - Keyword/phrase clouds
+- Comparative analysis across banks to identify strengths and weaknesses.  
+- Recommendations for each bank included:
+  - Addressing recurring technical issues (crashes, failed transactions, update problems)  
+  - Enhancing app usability and performance  
+  - Maintaining positive aspects that users already appreciate  
+- Noted potential biases in reviews (e.g., negative skew from frustrated users).
+
+---
+
 ## ⚙️ Reproduce this environment
 
 To set up and reproduce this project locally, follow the steps below:
